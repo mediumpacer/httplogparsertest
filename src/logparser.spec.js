@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { fetchLogFile, parseLogFile, getUniquePropertyValues, getTopPropertyValuesByCount } from './logParser.js';
-import { mockParsedLog, mockParsedLogArray } from '../mocks/mockParse.js';
+import { mockParsedLog, mockParsedLogArray } from './src/mocks/mockParse.js';
 
 describe('fetchLogFile', () => {
   it('should return a string', () => {
