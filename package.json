@@ -4,13 +4,17 @@
   "description": "This package is to parse a log file of HTTP requests",
   "main": "index.ts",
   "scripts": {
-    "task": "node index.js",
+    "task": "node --loader ts-node/esm index.ts",
     "test": "vitest run"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@types/node": "^24.0.8",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3",
     "vitest": "^3.2.4"
   }
 }
