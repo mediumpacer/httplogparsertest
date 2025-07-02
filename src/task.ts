@@ -10,7 +10,7 @@ import type { HTTPRequestLog} from './types/httplog.ts'
 /**
  * Gets the requested log values from a log file
  * @param {string} logFilePath the path to the log file
- * @param {string} includeTies include tied values in the top values
+ * @param {boolean} includeTies include tied values in the top values
  * @returns {object} an array of unique values for the given property
  */
 export const getRequestedLogValues = (logFilePath: string, includeTies = false) => {

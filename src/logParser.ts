@@ -3,7 +3,7 @@ import type { HTTPRequestLog} from './types/httplog.ts'
 
 // Regular expression to match the log format
 // export const logRegexOld = /^(\d{1,3}(?:\.\d{1,3}){3}) - (?:([^\s-]+)|-) \[([^\]]+)\] "(GET) ([^"]+) (HTTP\/[0-9.]+)" (\d{3}) (\d+) "-" "([^"]+)"(?:.*)?$/;
-export const logRegex = /^(?<ip>\d{1,3}(?:\.\d{1,3}){3}) - (?:(?<user>[^\s-]+)|-) \[(?<timestamp>[^\]]+)\] "(?<method>GET) ((?<url>[^"]+) (?<protocol>HTTP\/[0-9.]+)") (?<status>\d{3}) (?<size>\d+) "-" "(?<userAgent>[^"]+)"(?:.*)?$/;
+export const logRegex = /^(?<ip>\d{1,3}(?:\.\d{1,3}){3}) - (?:(?<user>[^\s-]+)|-) \[(?<timestamp>[^\]]+)\] "(?<method>GET|POST|PUT|DELETE) ((?<url>[^"]+) (?<protocol>HTTP\/[0-9.]+)") (?<status>\d{3}) (?<size>\d+) "-" "(?<userAgent>[^"]+)"(?:.*)?$/;
 
 /**
  * Adds two numbers together and returns the result.
@@ -91,13 +91,11 @@ export const getTopPropertyValuesByCount = (arr: HTTPRequestLog[], prop: string,
   }
 
   // const propCount =  arr.reduce((prev: HTTPRequestLog, curr: HTTPRequestLog) => (prev[curr[prop]] = ++prev[curr[prop]] || 1, prev), {});
-
   const propCount = arr.reduce((prev: Record<string, number>, curr: HTTPRequestLog) => {
     const key = String(curr[prop]);
     prev[key] = (prev[key] || 0) + 1;
     return prev;
   }, {});
-
 
   const sortedEntries = Object.entries(propCount).sort((a, b) => b[1] - a[1]);
   const placeCount = sortedEntries[places - 1] ? sortedEntries[places - 1][1] : 0;

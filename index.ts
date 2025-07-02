@@ -1,6 +1,5 @@
 import { getRequestedLogValues } from './src/task.ts';
 
-
 /**
  * Initializes the log parser and logs the requested values to the console
  */
