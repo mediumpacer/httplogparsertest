@@ -1,5 +1,4 @@
-import { getRequestedLogValues } from './scripts/task.js';
-
+import { getRequestedLogValues } from './src/task.ts';
 
 /**
  * Initializes the log parser and logs the requested values to the console
@@ -7,6 +6,11 @@ import { getRequestedLogValues } from './scripts/task.js';
 const init = () => {
   // change second parameter to true to include ties in the top values
   const taskValues = getRequestedLogValues("./logs/programming-task-example-data.log", true);
+
+  if (!taskValues) {
+    console.log("No values returned from log file provided");
+    return;
+  }
 
   console.log('-------------------------------------');
   console.log('Number of unique IP addresses:', taskValues.uniqueIpAddresses);
